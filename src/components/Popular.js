@@ -14,6 +14,7 @@ const Card = styled.div`
     overflow: hidden;
     border-radius: 2rem;
     position: relative;
+    margin: 1rem auto;
     
     img{
         border-radius: 2rem;
