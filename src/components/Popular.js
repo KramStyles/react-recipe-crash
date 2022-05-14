@@ -1,3 +1,5 @@
+import {Splide, SplideSlide} from "@splidejs/react-splide";
+import '@splidejs/splide/dist/css/splide.min.css';
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 
@@ -9,6 +11,11 @@ const Wrapper = styled.div`
 
 const Card = styled.div`
     min-height: 25rem;
+    overflow: hidden;
+    
+    img{
+        border-radius: 2rem;
+    }
 `
 
 export default function Popular() {
@@ -36,14 +43,18 @@ export default function Popular() {
     return (
         <Wrapper>
             Popular
-            {popular.map(recipe => {
-                return (
-                  <Card key={recipe.id}>
-                      <p>{recipe.title}</p>
-                      <img src={recipe.image} alt={recipe.title} />
-                  </Card>
-                );
-            })}
+            <Splide>
+                {popular.map(recipe => {
+                    return (
+                        <SplideSlide>
+                            <Card key={recipe.id}>
+                                <p>{recipe.title}</p>
+                                <img src={recipe.image} alt={recipe.title}/>
+                            </Card>
+                        </SplideSlide>
+                    );
+                })}
+            </Splide>
         </Wrapper>
     )
 }
