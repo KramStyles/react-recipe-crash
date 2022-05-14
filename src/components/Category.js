@@ -20,26 +20,22 @@ const List = styled.div`
 export default function Category(){
     return (
         <List>
-            <div>
-            {/*<NavLink to={'/cuisine/Italian'}>*/}
+            <NavLink to={'/cuisine/Italian'}>
                 <FaPizzaSlice/>
                 <h4>Italian</h4>
-            </div>
-            <div>
-            {/*<NavLink to={'/cuisine/Favorites'}>*/}
+            </NavLink>
+            <NavLink to={'/cuisine/Favorites'}>
                 <GiRank3/>
                 <h4>Favorites</h4>
-            </div>
-            <div>
-            {/*<NavLink to={'/cuisine/Chinese'}>*/}
+            </NavLink>
+            <NavLink to={'/cuisine/Chinese'}>
                 <GiChopsticks/>
                 <h4>Chinese</h4>
-            </div>
-            <div>
-            {/*<NavLink to={'/cuisine/Intercontinental'}>*/}
+            </NavLink>
+            <NavLink to={'/cuisine/Intercontinental'}>
                 <IoFastFood/>
                 <h4>Intercontinental</h4>
-            </div>
+            </NavLink>
         </List>
     )
 }
