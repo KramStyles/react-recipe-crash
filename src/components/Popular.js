@@ -15,6 +15,7 @@ const Card = styled.div`
     
     img{
         border-radius: 2rem;
+        width: 100%
     }
 `
 
@@ -42,8 +43,15 @@ export default function Popular() {
     }
     return (
         <Wrapper>
-            Popular
-            <Splide>
+            <h4>Popular</h4>
+            <Splide options={{
+                perPage: 3,
+                rewind: true,
+                arrows: false,
+                drag: 'free',
+                pagination: false,
+                gap: '2rem'
+            }}>
                 {popular.map(recipe => {
                     return (
                         <SplideSlide>
