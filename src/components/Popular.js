@@ -27,7 +27,7 @@ export default function Popular() {
             Popular
             {popular.map(recipe => {
                 return (
-                  <pre>{recipe.title}</pre>  
+                  <pre key={recipe.id}>{recipe.title}</pre>
                 );
             })}
         </div>
