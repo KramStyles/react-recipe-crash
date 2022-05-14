@@ -24,17 +24,17 @@ export default function Category(){
                 <FaPizzaSlice/>
                 <h4>Italian</h4>
             </NavLink>
-            <NavLink to={'/cuisine/Favorites'}>
+            <NavLink to={'/cuisine/African'}>
                 <GiRank3/>
-                <h4>Favorites</h4>
+                <h4>African</h4>
             </NavLink>
             <NavLink to={'/cuisine/Chinese'}>
                 <GiChopsticks/>
                 <h4>Chinese</h4>
             </NavLink>
-            <NavLink to={'/cuisine/Intercontinental'}>
+            <NavLink to={'/cuisine/Mexican'}>
                 <IoFastFood/>
-                <h4>Intercontinental</h4>
+                <h4>Mexican</h4>
             </NavLink>
         </List>
     )

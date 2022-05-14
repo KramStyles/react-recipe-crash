@@ -1,14 +1,16 @@
+import Cuisine from "./Cuisine";
 import Home from "./Home";
-import {Route, Routes} from "react-router-dom";
+import Category from "../components/Category";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-export default function Pages (){
-    return(
-        <Routes>
-            <Route path={'/'} element={<Home />}/>
-            {/*<Route path={'/cuisine/Italian'} element={<Home />}/>*/}
-            {/*<Route path={'/cuisine/Favorites'} element={<Home />}/>*/}
-            {/*<Route path={'/cuisine/Chinese'} element={<Home />}/>*/}
-            {/*<Route path={'/cuisine/Intercontinental'} element={<Home />}/>*/}
-        </Routes>
+export default function Pages() {
+    return (
+        <BrowserRouter>
+            <Category/>
+            <Routes>
+                <Route path={'/'} element={<Home/>}/>
+                <Route path={'/cuisine/:type'} element={<Cuisine/>}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
