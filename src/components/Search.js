@@ -1,10 +1,12 @@
 import {CgSearch} from "react-icons/cg";
 import styled from "styled-components";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 export default function Search() {
     const [input, setInput] = useState('Hello');
+    const navigate = useNavigate();
 
     const inputHandler = (e) => {
         setInput(e.target.value);
@@ -12,7 +14,7 @@ export default function Search() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        alert('hey');
+        navigate(`/searched/${input}`);
     }
 
     return (
