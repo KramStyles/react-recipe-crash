@@ -10,7 +10,6 @@ const List = styled.div`
     justify-content: space-evenly;
     margin: 2rem 0rem;
     background-color: silver;
-    
 `
 
 const SLink = styled(NavLink)`
@@ -28,6 +27,9 @@ const SLink = styled(NavLink)`
     h4{
         color: white;
         font-size: 14px;
+    }
+    &.active{
+        background: black;
     }
 `
 

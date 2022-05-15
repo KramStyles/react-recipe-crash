@@ -1,5 +1,4 @@
-import {Link, useParams} from "react-router-dom";
-import {motion} from "framer-motion";
+import {useParams} from "react-router-dom";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 
