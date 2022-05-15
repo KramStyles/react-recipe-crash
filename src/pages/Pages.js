@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Category from "../components/Category";
 import Cuisine from "./Cuisine";
+import Fetched from "./Fetched";
 import Home from "./Home";
 import Search from "../components/Search";
 
@@ -12,6 +13,7 @@ export default function Pages() {
             <Routes>
                 <Route path={'/'} element={<Home/>}/>
                 <Route path={'/cuisine/:type'} element={<Cuisine/>}/>
+                <Route path={'/searched/:search'} element={<Fetched/>}/>
             </Routes>
         </BrowserRouter>
     )

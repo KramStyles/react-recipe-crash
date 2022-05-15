@@ -2,10 +2,29 @@ import {CgSearch} from "react-icons/cg";
 import styled from "styled-components";
 import {useState} from "react";
 
-export default function Search (){
 
-    const Formstyle = styled.form`
-        margin: auto;
+export default function Search() {
+    const [input, setInput] = useState('Hello');
+
+    const inputHandler = (e) => {
+        setInput(e.target.value);
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        alert('hey');
+    }
+
+    return (
+        <Formstyle onSubmit={submitHandler}>
+            <CgSearch/>
+            <input type={'text'} placeholder={'Enter anything!'} value={input} onChange={inputHandler}/>
+        </Formstyle>
+    )
+}
+
+const Formstyle = styled.form`
+        margin: 3rem auto;
         position: relative;
         width: 90%;
         
@@ -29,11 +48,3 @@ export default function Search (){
             font-size: 2em;
         }
     `
-
-    return(
-        <Formstyle>
-            <CgSearch/>
-            <input type={'text'}/>
-        </Formstyle>
-    )
-}
