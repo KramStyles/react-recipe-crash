@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import styled from "styled-components";
 
 const Grid = styled.div`
         display: Grid;
@@ -27,8 +27,7 @@ export default function Fetched() {
     let params = useParams();
 
     useEffect(() => {
-        // getQuery(params.search);
-        console.log(params.search);
+        getQuery(params.search);
     }, [params.search]); // Use effect would mount when there's a change in Params
 
     const getQuery = async (name) => {
@@ -36,7 +35,7 @@ export default function Fetched() {
         if (data) {
             data = JSON.parse(data);
         } else {
-            const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=30&query=${name}`);
+            const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=60&query=${name}`);
             data = await api.json();
             localStorage.setItem(`${name}_query`, JSON.stringify(data))
             console.log(`From api ${name}`, data)
@@ -46,8 +45,15 @@ export default function Fetched() {
     }
 
     return (
-        <div>
-            <h1>This is the fetched page. Let's get {params.search}</h1>
-        </div>
+        <Grid>
+            {query.map((recipe) => {
+                return (
+                    <Card key={recipe.id}>
+                        <img src={recipe.image} alt={recipe.title}/>
+                        <h4>{recipe.title}</h4>
+                    </Card>
+                )
+            })}
+        </Grid>
     )
 }
