@@ -1,12 +1,14 @@
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Category from "../components/Category";
 import Cuisine from "./Cuisine";
 import Home from "./Home";
-import Category from "../components/Category";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Search from "../components/Search";
 
 export default function Pages() {
     return (
         <BrowserRouter>
             <Category/>
+            <Search/>
             <Routes>
                 <Route path={'/'} element={<Home/>}/>
                 <Route path={'/cuisine/:type'} element={<Cuisine/>}/>
