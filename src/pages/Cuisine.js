@@ -17,7 +17,6 @@ export default function Cuisine() {
         let data = localStorage.getItem(`${name}_cuisines`);
         if (data) {
             data = JSON.parse(data);
-            console.log(`From localstorage ${name}`, data)
         } else {
             const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=30&cuisine=${name}`);
             data = await api.json();
@@ -26,7 +25,6 @@ export default function Cuisine() {
         }
 
         setCuisine(data.results);
-        console.log('This is cuisine!!', cuisine)
     }
 
     const Grid = styled.div`

@@ -11,31 +11,45 @@ const List = styled.div`
     margin: 2rem 0rem;
     background-color: silver;
     
-    div{
-        text-align: center;
-    }
+`
+
+const SLink = styled(NavLink)`
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    height: 6rem;
+    width: 6rem;
+    background: grey;
+    padding-top: 1.1rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 30px;
     
+    h4{
+        color: white;
+        font-size: 14px;
+    }
 `
 
 export default function Category(){
     return (
         <List>
-            <NavLink to={'/cuisine/Italian'}>
+            <SLink to={'/cuisine/Italian'}>
                 <FaPizzaSlice/>
                 <h4>Italian</h4>
-            </NavLink>
-            <NavLink to={'/cuisine/African'}>
+            </SLink>
+            <SLink to={'/cuisine/African'}>
                 <GiRank3/>
                 <h4>African</h4>
-            </NavLink>
-            <NavLink to={'/cuisine/Chinese'}>
+            </SLink>
+            <SLink to={'/cuisine/Chinese'}>
                 <GiChopsticks/>
                 <h4>Chinese</h4>
-            </NavLink>
-            <NavLink to={'/cuisine/Mexican'}>
+            </SLink>
+            <SLink to={'/cuisine/Mexican'}>
                 <IoFastFood/>
                 <h4>Mexican</h4>
-            </NavLink>
+            </SLink>
         </List>
     )
 }
