@@ -10,20 +10,19 @@ export default function Cuisine() {
     let params = useParams();
 
     useEffect(() => {
-        // getCuisine()
-        console.log(params);
-    }, []);
+        getCuisine(params.type);
+    }, [params.type]); // Use effect would mount when there's a change in Params
 
     const getCuisine = async (name) => {
-        let data = localStorage.getItem('cuisines');
+        let data = localStorage.getItem(`${name}_cuisines`);
         if (data) {
             data = JSON.parse(data);
-            console.log('From localstorage', data)
+            console.log(`From localstorage ${name}`, data)
         } else {
             const api = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=30&cuisine=${name}`);
             data = await api.json();
-            localStorage.setItem('veggie_recipes', JSON.stringify(data))
-            console.log('From api', data)
+            localStorage.setItem(`${name}_cuisines`, JSON.stringify(data))
+            console.log(`From api ${name}`, data)
         }
 
         setCuisine(data.recipes);
