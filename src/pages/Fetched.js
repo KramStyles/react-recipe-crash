@@ -1,5 +1,26 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import styled from "styled-components";
+
+const Grid = styled.div`
+        display: Grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-gap: 3rem;
+    `;
+
+const Card = styled.div`
+        img{
+            width: 100%;
+            border-radius: 2rem;
+        }
+        a {
+            text-decoration: none;
+        }
+        h4{
+            text-align: center;
+            padding: 1rem;
+        }
+    `;
 
 export default function Fetched() {
     const [query, setQuery] = useState([])
