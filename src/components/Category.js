@@ -9,7 +9,6 @@ const List = styled.div`
     display: flex;
     justify-content: space-evenly;
     margin: 2rem 0rem;
-    background-color: silver;
 `
 
 const SLink = styled(NavLink)`

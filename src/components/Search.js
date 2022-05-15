@@ -11,22 +11,28 @@ export default function Search (){
         
         input{
             border: none;
-            background: linear-gradient(35deg, #494949, #313131);
+            background: linear-gradient(35deg, silver, lightgrey);
             outline: none;
             border-radius: 1rem;
+            width: 100%;
             padding: 2rem;
+            color: black;
+            font-size: 1.2em;
+            
         }
         
         svg{
             position: absolute;
-            top: 50%;
-            left: 0%;
-            color: white;
+            top: 30%;
+            right: 20px;
+            color: black;
+            font-size: 2em;
         }
     `
 
     return(
         <Formstyle>
+            <CgSearch/>
             <input type={'text'}/>
         </Formstyle>
     )
