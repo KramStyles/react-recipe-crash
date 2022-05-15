@@ -25,12 +25,40 @@ export default function Cuisine() {
             console.log(`From api ${name}`, data)
         }
 
-        setCuisine(data.recipes);
+        setCuisine(data.results);
+        console.log('This is cuisine!!', cuisine)
     }
 
+    const Grid = styled.div`
+        display: Grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-gap: 3rem;
+    `;
+
+    const Card = styled.div`
+        img{
+            width: 100%;
+            border-radius: 2rem;
+        }
+        a {
+            text-decoration: none;
+        }
+        h4{
+            text-align: center;
+            padding: 1rem;
+        }
+    `;
+
     return (
-        <div>
-            <h2>This is Cuisine</h2>
-        </div>
+        <Grid>
+            {cuisine.map((recipe)=> {
+                return (
+                    <Card key={recipe.id}>
+                        <img src={recipe.image} alt={recipe.title} />
+                        <h4>{recipe.title}</h4>
+                    </Card>
+                )
+            })}
+        </Grid>
     )
 }
