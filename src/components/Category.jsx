@@ -22,6 +22,7 @@ const SLink = styled(NavLink)`
     border-radius: 50%;
     color: white;
     font-size: 30px;
+    transition: 0.3s ease all;
     
     h4{
         color: white;
@@ -29,6 +30,9 @@ const SLink = styled(NavLink)`
     }
     &.active{
         background: black;
+    }
+    &:hover{
+        background: dodgerblue;
     }
 `
 

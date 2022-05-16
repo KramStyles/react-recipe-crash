@@ -2,6 +2,7 @@ import {Splide, SplideSlide} from "@splidejs/react-splide";
 import '@splidejs/splide/dist/css/splide.min.css';
 import styled from "styled-components";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 // Create styled wrapper
 
@@ -50,11 +51,19 @@ const Gradient = styled.div`
 
 export default function Veggie() {
     const [veggies, setVeggies] = useState([]);
+    const navigate = useNavigate();
+
 
     // Run function as soon as the component gets loaded
     useEffect(() => {
         getVeggies();
     }, []);
+
+    const navigateTo = (ev) => {
+        let current_info = ev.target.nextElementSibling.getAttribute('info');
+        localStorage.setItem('current_info', current_info);
+        navigate('/recipe/1');
+    }
 
     const getVeggies = async () => {
         let data = localStorage.getItem('veggie_recipes');
@@ -84,9 +93,9 @@ export default function Veggie() {
                 {veggies.map(recipe => {
                     return (
                         <SplideSlide key={recipe.id}>
-                            <Card>
+                            <Card onClick={navigateTo} info={'hellooo'} >
                                 <Gradient/>
-                                <p>{recipe.title}</p>
+                                <p info={JSON.stringify(recipe)}>{recipe.title}</p>
                                 <img src={recipe.image} alt={recipe.title}/>
                             </Card>
                         </SplideSlide>

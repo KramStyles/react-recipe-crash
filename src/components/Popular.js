@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {Splide, SplideSlide} from "@splidejs/react-splide";
 import '@splidejs/splide/dist/css/splide.min.css';
 import styled from "styled-components";
@@ -85,9 +86,11 @@ export default function Popular() {
                     return (
                         <SplideSlide key={recipe.id}>
                             <Card>
-                                <Gradient/>
-                                <p>{recipe.title}</p>
-                                <img src={recipe.image} alt={recipe.title}/>
+                                <Link to={`/recipe/${recipe.id}`}>
+                                    <Gradient/>
+                                    <p>{recipe.title}</p>
+                                    <img src={recipe.image} alt={recipe.title}/>
+                                </Link>
                             </Card>
                         </SplideSlide>
                     );
