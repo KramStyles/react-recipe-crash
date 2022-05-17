@@ -3,7 +3,7 @@ import {useState} from "react";
 
 const DetailWrapper = styled.div`
         display: flex;
-        margin: 10rem auto;
+        margin: 3rem auto;
         
         .active {
             background: linear-gradient(35deg, #505050, #303030);
@@ -29,6 +29,16 @@ const DetailWrapper = styled.div`
 
     const Info = styled.div`
         margin: 5rem;
+        padding: 10px;
+        
+        p{
+            color: #222;
+            text-align: justify;
+            margin: 15px auto; 
+        }
+        a{
+            color: dodgerblue;
+        }
     `
 
 export default function Recipe() {
@@ -45,6 +55,13 @@ export default function Recipe() {
             <Info>
                 <Button onClick={() => setActiveTab('instructions')} className={activeTab === 'instructions' ? 'active' : ''}>Instructions</Button>
                 <Button onClick={() => setActiveTab('ingredients')} className={activeTab === 'ingredients' ? 'active' : ''}>Ingredients</Button>
+
+                <div>
+                    <h3>Summary</h3>
+                    <p dangerouslySetInnerHTML={{__html: details.summary}}/>
+                    <h3>Instructions</h3>
+                    <p dangerouslySetInnerHTML={{__html: details.instructions}}/>
+                </div>
             </Info>
         </DetailWrapper>
     )
