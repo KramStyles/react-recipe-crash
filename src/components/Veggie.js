@@ -69,7 +69,6 @@ export default function Veggie() {
         let data = localStorage.getItem('veggie_recipes');
         if (data) {
             data = JSON.parse(data);
-            console.log('From localstorage', data)
         } else {
             const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=30&tags=vegetarian`);
             data = await api.json();

@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Splide, SplideSlide} from "@splidejs/react-splide";
 import '@splidejs/splide/dist/css/splide.min.css';
 import styled from "styled-components";
@@ -51,17 +51,23 @@ const Gradient = styled.div`
 
 export default function Popular() {
     const [popular, setPopular] = useState([]);
+    const navigate = useNavigate();
 
     // Run function as soon as the component gets loaded
     useEffect(() => {
         getPopular();
     }, []);
 
+    const navigateTo = (ev) => {
+        let current_info = ev.target.nextElementSibling.getAttribute('info');
+        localStorage.setItem('current_info', current_info);
+        navigate('/recipe/1');
+    }
+
     const getPopular = async () => {
         let data = localStorage.getItem('random_recipes');
         if (data) {
             data = JSON.parse(data);
-            console.log('From localstorage', data)
         } else {
             const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=18`);
             data = await api.json();
@@ -85,12 +91,10 @@ export default function Popular() {
                 {popular.map(recipe => {
                     return (
                         <SplideSlide key={recipe.id}>
-                            <Card>
-                                <Link to={`/recipe/${recipe.id}`}>
+                            <Card onClick={navigateTo}>
                                     <Gradient/>
-                                    <p>{recipe.title}</p>
+                                    <p info={JSON.stringify(recipe)}>{recipe.title}</p>
                                     <img src={recipe.image} alt={recipe.title}/>
-                                </Link>
                             </Card>
                         </SplideSlide>
                     );

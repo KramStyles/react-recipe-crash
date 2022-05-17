@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 
 
 export default function Search() {
-    const [input, setInput] = useState('Hello');
+    const [input, setInput] = useState('');
     const navigate = useNavigate();
 
     const inputHandler = (e) => {
