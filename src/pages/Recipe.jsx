@@ -10,15 +10,20 @@ const DetailWrapper = styled.div`
             color: white;
         }
         li {
-            font-size: 1.2rem;
-            line-height: 2.5rem;
+            font-size: 80%;
+            line-height: 1.6rem;
+            color: grey;
+            list-style-type: none;
         }
         ul, h3 {
             margin: 2rem auto;
         }
+        img {
+            object-fit: cover;
+        }
     `
 
-    const Button = styled.button`
+const Button = styled.button`
         padding: 1rem 2rem;
         color: #313131;
         background-color: white;
@@ -27,7 +32,7 @@ const DetailWrapper = styled.div`
         border: 2px solid black;
     `
 
-    const Info = styled.div`
+const Info = styled.div`
         margin: 5rem;
         padding: 10px;
         
@@ -56,12 +61,22 @@ export default function Recipe() {
                 <Button onClick={() => setActiveTab('instructions')} className={activeTab === 'instructions' ? 'active' : ''}>Instructions</Button>
                 <Button onClick={() => setActiveTab('ingredients')} className={activeTab === 'ingredients' ? 'active' : ''}>Ingredients</Button>
 
-                <div>
-                    <h3>Summary</h3>
-                    <p dangerouslySetInnerHTML={{__html: details.summary}}/>
-                    <h3>Instructions</h3>
-                    <p dangerouslySetInnerHTML={{__html: details.instructions}}/>
-                </div>
+                {activeTab === "instructions" && (
+                    <div>
+                        <h3>Summary</h3>
+                        <p dangerouslySetInnerHTML={{__html: details.summary}}/>
+                        <h3>Instructions</h3>
+                        <p dangerouslySetInnerHTML={{__html: details.instructions}}/>
+                    </div>
+                )}
+
+                {activeTab === 'ingredients' && (
+                  <ul>
+                    {details.extendedIngredients.map((item) => (
+                        <li key={item.id}>{item.original}</li>
+                    ))}
+                </ul>
+                )}
             </Info>
         </DetailWrapper>
     )
