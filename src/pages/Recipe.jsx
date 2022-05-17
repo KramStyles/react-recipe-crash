@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {useState} from "react";
 
 const DetailWrapper = styled.div`
         display: flex;
@@ -31,9 +32,8 @@ const DetailWrapper = styled.div`
     `
 
 export default function Recipe() {
-    let details = JSON.parse(localStorage.getItem('current_info'));
-    console.log(details, 'This is detail');
-
+    const details = JSON.parse(localStorage.getItem('current_info'));
+    const [activeTab, setActiveTab] = useState('instructions');
 
 
     return (
@@ -43,8 +43,8 @@ export default function Recipe() {
                 <img src={details.image} alt={details.title}/>
             </div>
             <Info>
-                <Button>Instructions</Button>
-                <Button>Ingredients</Button>
+                <Button onClick={() => setActiveTab('instructions')} className={activeTab === 'instructions' ? 'active' : ''}>Instructions</Button>
+                <Button onClick={() => setActiveTab('ingredients')} className={activeTab === 'ingredients' ? 'active' : ''}>Ingredients</Button>
             </Info>
         </DetailWrapper>
     )
