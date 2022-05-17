@@ -1,4 +1,4 @@
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 
@@ -26,11 +26,19 @@ export default function Cuisine() {
     // Use params allow us to fetch parameter from the url
 
     const [cuisine, setCuisine] = useState([]);
+    const navigate = useNavigate();
     let params = useParams();
 
     useEffect(() => {
         getCuisine(params.type);
     }, [params.type]); // Use effect would mount when there's a change in Params
+
+    const navigateTo = (ev) => {
+        let current_info = ev.target.nextElementSibling.getAttribute('info');
+        console.log(current_info, 'This is is');
+        localStorage.setItem('current_info', current_info);
+        navigate('/recipe');
+    }
 
     const getCuisine = async (name) => {
         let data = localStorage.getItem(`${name}_cuisines`);
@@ -50,9 +58,9 @@ export default function Cuisine() {
         <Grid>
             {cuisine.map((recipe) => {
                 return (
-                    <Card key={recipe.id}>
-                        <img src={recipe.image} alt={recipe.title}/>
-                        <h4>{recipe.title}</h4>
+                    <Card key={recipe.id} onClick={navigateTo}>
+                        <img src={recipe.image} alt={recipe.title} />
+                        <h4 info={JSON.stringify(recipe)}>{recipe.title}</h4>
                     </Card>
                 )
             })}

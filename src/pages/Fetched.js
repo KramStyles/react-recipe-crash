@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 const Grid = styled.div`
@@ -24,11 +24,19 @@ const Card = styled.div`
 
 export default function Fetched() {
     const [query, setQuery] = useState([])
+    const navigate = useNavigate();
     let params = useParams();
+
 
     useEffect(() => {
         getQuery(params.search);
     }, [params.search]); // Use effect would mount when there's a change in Params
+
+    const navigateTo = (ev) => {
+        let current_info = ev.target.nextElementSibling.getAttribute('info');
+        localStorage.setItem('current_info', current_info);
+        navigate('/recipe');
+    }
 
     const getQuery = async (name) => {
         let data = localStorage.getItem(`${name}_query`);
@@ -44,12 +52,13 @@ export default function Fetched() {
         setQuery(data.results);
     }
 
+
     return (
         <Grid>
             {query.map((recipe) => {
                 return (
-                    <Card key={recipe.id}>
-                        <img src={recipe.image} alt={recipe.title}/>
+                    <Card key={recipe.id} onClick={navigateTo}>
+                        <img src={recipe.image} alt={recipe.title} info={JSON.stringify(recipe)}/>
                         <h4>{recipe.title}</h4>
                     </Card>
                 )

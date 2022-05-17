@@ -61,7 +61,7 @@ export default function Popular() {
     const navigateTo = (ev) => {
         let current_info = ev.target.nextElementSibling.getAttribute('info');
         localStorage.setItem('current_info', current_info);
-        navigate('/recipe/1');
+        navigate('/recipe');
     }
 
     const getPopular = async () => {
