@@ -35,7 +35,6 @@ export default function Cuisine() {
 
     const navigateTo = (ev) => {
         let current_info = ev.target.nextElementSibling.getAttribute('info');
-        console.log(current_info, 'This is is');
         localStorage.setItem('current_info', current_info);
         navigate('/recipe');
     }
