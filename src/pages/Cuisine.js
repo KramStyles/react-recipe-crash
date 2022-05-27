@@ -34,9 +34,25 @@ export default function Cuisine() {
     }, [params.type]); // Use effect would mount when there's a change in Params
 
     const navigateTo = (ev) => {
-        let current_info = ev.target.nextElementSibling.getAttribute('info');
-        localStorage.setItem('current_info', current_info);
+        let idd = ev.target.nextElementSibling.getAttribute('info');
+        // localStorage.setItem('current_info', current_info);
+        getSingle(idd);
+        console.log(idd);
         navigate('/recipe');
+    }
+
+    const getSingle = async (idd) => {
+        let data = localStorage.getItem(`${idd}_cuisines`);
+        if (data) {
+            data = JSON.parse(data);
+            localStorage.setItem('current_info', JSON.stringify(data));
+        } else {
+            const api = await fetch(`https://api.spoonacular.com/recipes/${idd}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+            data = await api.json();
+            localStorage.setItem('current_info', JSON.stringify(data));
+            localStorage.setItem(`${idd}_cuisines`, JSON.stringify(data))
+            console.log(`From api ${idd}`, data)
+        }
     }
 
     const getCuisine = async (name) => {
@@ -59,7 +75,7 @@ export default function Cuisine() {
                 return (
                     <Card key={recipe.id} onClick={navigateTo}>
                         <img src={recipe.image} alt={recipe.title} />
-                        <h4 info={JSON.stringify(recipe)}>{recipe.title}</h4>
+                        <h4 info={recipe.id}>{recipe.title}</h4>
                     </Card>
                 )
             })}
