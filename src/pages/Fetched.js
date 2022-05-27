@@ -25,7 +25,6 @@ const Card = styled.div`
 export default function Fetched() {
     const [query, setQuery] = useState([])
     const navigate = useNavigate();
-    const [single, setSingle] = useState('');
 
     let params = useParams();
 
@@ -39,23 +38,20 @@ export default function Fetched() {
         let data = localStorage.getItem(`${idd}_cuisines`);
         if (data) {
             data = JSON.parse(data);
+            localStorage.setItem('current_info', JSON.stringify(data));
         } else {
             const api = await fetch(`https://api.spoonacular.com/recipes/${idd}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
             data = await api.json();
+            localStorage.setItem('current_info', JSON.stringify(data));
             localStorage.setItem(`${idd}_cuisines`, JSON.stringify(data))
             console.log(`From api ${idd}`, data)
         }
-
-        setSingle(data);
-        console.log(data);
-        console.log(single, 'data');
     }
 
     const navigateTo = (ev) => {
         let idd = ev.target.nextElementSibling.getAttribute('info');
         getSingle(idd);
 
-        localStorage.setItem('current_info', JSON.stringify(single));
         navigate('/recipe');
     }
 
